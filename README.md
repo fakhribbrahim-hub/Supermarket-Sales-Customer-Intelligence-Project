@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This project analyzes a multi-year supermarket sales dataset to uncover revenue drivers, customer behavior patterns, and churn risks.
+This project analyzes a multi-year supermarket sales dataset (2015–2018) to uncover revenue drivers, customer behavior patterns, and churn risks.
 
 The objective was to move beyond basic reporting and build a structured Business Intelligence solution that provides:
 
