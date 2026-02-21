@@ -20,7 +20,24 @@ The project combines SQL data modeling and Power BI dashboard development.
 4. Quantify revenue lost due to churn.
 5. Prioritize customer recovery actions.
 
-## Data Preparation (SQL Server)
+## Project Workflow
+
+1. Raw data exploration and quality assessment  
+2. Data cleaning, normalization, and schema design in SQL Server  
+3. Star schema implementation (Fact & Dimension tables)  
+4. RFM score calculation and customer segmentation  
+5. Analytical KPI layer creation (SQL Views & DAX measures)  
+6. Customer churn identification and revenue impact analysis  
+7. Interactive dashboard development in Power BI
+   
+## Tools & Technologies
+
+- SQL Server (Data Modeling & Transformation)
+- Power BI (Data Visualization & DAX)
+- RFM Segmentation Methodology
+- DAX for KPI calculations
+
+## Data Cleaning & Preparation (SQL Server)
 
 The dataset was transformed into a star schema model:
 
@@ -36,7 +53,23 @@ Key steps:
 - Revenue and profitability calculations
 - RFM score computation
 
-## Dashboard Structure (Power BI)
+## SQL Script Structure
+
+The SQL workflow was divided into two main scripts:
+
+### 01_Data_Preparation_Modeling.sql
+   - Data cleaning and deduplication
+   - Standardization
+   - Star schema creation (Fact & Dimension tables)
+   - Primary and foreign key implementation
+
+### 02_Analytics_Views_KPI.sql
+   - Creation of analytical views
+   - KPI calculations
+   - RFM score computation
+   - Customer churn classification
+     
+## Power BI Dashboard
 
 ### Sales Overview
 - Total Sales
@@ -67,13 +100,6 @@ Key steps:
 - Customers with high recency but declining frequency represent early churn signals.
 - Revenue loss from churned customers highlights the importance of retention strategies.
 
-## Tools & Technologies
-
-- SQL Server (Data Modeling & Transformation)
-- Power BI (Data Visualization & DAX)
-- RFM Segmentation Methodology
-- DAX for KPI calculations
-
 ## DAX Examples (Key Measures)
 
 Below are examples of key DAX measures used to build KPIs and customer intelligence indicators.
@@ -82,12 +108,12 @@ Below are examples of key DAX measures used to build KPIs and customer intellige
 ```DAX
 Total Sales =
 SUM(Fact_Sales[Sales])
-
+```
 ### Total Orders
 ```DAX
 Total Orders =
 DISTINCTCOUNT(Fact_Sales[Order ID])
-
+```
 ### Sales Last Year (LY)
 ```DAX
 Sales LY =
@@ -104,7 +130,7 @@ IF(
         )
     )
 )
-
+```
 ### Sales Growth YoY %
 ```DAX
 Sales Growth YoY % = 
@@ -117,7 +143,7 @@ IF(
     BLANK(),
     DIVIDE( Diff, LastYearSales )
 )
-
+```
 ### Churned Customers
 ```DAX
 Churned Customers = 
@@ -125,7 +151,7 @@ CALCULATE(
     DISTINCTCOUNT('RFM Segment'[Customer ID]),
     'RFM Segment'[Churn Status]="Churned"
 )
-
+```
 ### Champions Customers %
 ```DAX
 Champions % = 
@@ -136,7 +162,7 @@ DIVIDE(
     ),
     [Total Customers]
 )
-
+```
 ### Customers at Risk
 ```DAX
 Customers at Risk = 
@@ -144,7 +170,35 @@ CALCULATE(
     DISTINCTCOUNT('RFM Segment'[Customer ID]),
     'RFM Segment'[RFM_Segment]="At Risk"
 )
+```
 
-## 📎 Note
+## Dashboard Preview
+
+### Sales Overview
+![Sales Overview](images/sales_overview.jpg)
+
+### RFM Analysis
+![RFM Analysis](images/RFM_analysis.jpg)
+
+### Churn & Retention
+![Churn & Retention](images/churn_analysis.jpg)
+
+## Power BI File
 
 The Power BI file (.pbix) is available upon request.
+
+## Skills Demonstrated
+
+- Data modeling using Star Schema (Fact & Dimension tables)
+- SQL data transformation and normalization
+- RFM customer segmentation methodology
+- Customer churn analysis
+- Revenue impact analysis
+- Advanced DAX calculations (CALCULATE, FILTER, ALL, VAR)
+- Customer retention prioritization strategy
+- End-to-end BI workflow (SQL → Data Model → Power BI)
+
+## Author
+
+Mohamed Fakhri Ben Brahim  
+Aspiring Data Analyst | Python | SQL | Power BI | DAX | Advanced Excel
